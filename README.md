@@ -63,7 +63,7 @@ Create a `.env` file in both the `/backend` and `/frontend` folders.
 #### 📁 `/backend/.env`
 
 ```env
-PORT=5000
+PORT=5050
 MONGO_URI=your_mongo_connection_string
 JWT_SECRET=your_jwt_secret_key
 CLOUDINARY_CLOUD_NAME=your_cloud_name
