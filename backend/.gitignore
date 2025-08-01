@@ -1,0 +1,43 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime
+pids/
+*.pid
+*.seed
+
+# dotenv environment variables
+.env
+.env.*  # catch variations like .env.local, .env.development
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.swp
+
+# Build outputs
+dist/
+build/
+
+# Coverage results
+coverage/
+
+# MongoDB dumps
+dump/
+
+# Temporary files
+*.tgz
+*.zip
+*.bak
+*.tmp
