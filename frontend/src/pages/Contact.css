@@ -1,0 +1,43 @@
+.contactContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.contactForm {
+  width: 400px;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contactForm h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.contactForm input,
+.contactForm textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contactForm textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.contactForm button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #009688;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

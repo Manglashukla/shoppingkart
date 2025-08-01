@@ -1,0 +1,27 @@
+.productCard {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: black;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+}
+
+.productCard:hover {
+  transform: translateY(-5px);
+}
+
+.productCard img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.productCard p {
+  margin: 0.5rem 0;
+  font-weight: bold;
+}
+
+.productCard span {
+  color: green;
+}

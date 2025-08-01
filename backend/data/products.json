@@ -1,0 +1,197 @@
+[
+  {
+    "name": "Stylish Kurti",
+    "description": "Elegant kurti with ethnic design",
+    "price": 499,
+    "category": "Women",
+    "stock": 20,
+    "images": [
+      {
+        "public_id": "kurti1",
+        "url": "/images/stylish-kurti.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Men's T-Shirt",
+    "description": "Comfortable cotton tee",
+    "price": 299,
+    "category": "Men",
+    "stock": 30,
+    "images": [
+      {
+        "public_id": "tshirt1",
+        "url": "/images/mens-T-shirt.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Women's Jeans",
+    "description": "Slim fit denim jeans",
+    "price": 899,
+    "category": "Women",
+    "stock": 25,
+    "images": [
+      {
+        "public_id": "jeans1",
+        "url": "/images/women's-jeans.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Men's Formal Shirt",
+    "description": "Plain white formal shirt",
+    "price": 699,
+    "category": "Men",
+    "stock": 15,
+    "images": [
+      {
+        "public_id": "shirt1",
+        "url": "/images/men's-formal-shirt.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Girls Frock",
+    "description": "Floral printed frock for girls",
+    "price": 499,
+    "category": "Kids",
+    "stock": 18,
+    "images": [
+      {
+        "public_id": "frock1",
+        "url": "/images/girls-frock.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Boy's Shorts",
+    "description": "Cotton shorts with elastic waist",
+    "price": 349,
+    "category": "Kids",
+    "stock": 22,
+    "images": [
+      {
+        "public_id": "shorts1",
+        "url": "/images/boy's-shorts.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Ladies Handbag",
+    "description": "Trendy leather handbag for women",
+    "price": 1199,
+    "category": "Accessories",
+    "stock": 12,
+    "images": [
+      {
+        "public_id": "bag1",
+        "url": "/images/ladies-handbag.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Men's Wallet",
+    "description": "Compact and stylish leather wallet",
+    "price": 499,
+    "category": "Accessories",
+    "stock": 40,
+    "images": [
+      {
+        "public_id": "wallet1",
+        "url": "/images/mens-wallet.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Women's Sandals",
+    "description": "Comfortable sandals for casual wear",
+    "price": 599,
+    "category": "Women",
+    "stock": 20,
+    "images": [
+      {
+        "public_id": "sandal1",
+        "url": "/images/women's-sandals.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Men's Running Shoes",
+    "description": "Lightweight running shoes for men",
+    "price": 1299,
+    "category": "Men",
+    "stock": 18,
+    "images": [
+      {
+        "public_id": "shoes1",
+        "url": "/images/men's-running-shoes.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Unisex Cap",
+    "description": "Adjustable cotton cap for all",
+    "price": 199,
+    "category": "Accessories",
+    "stock": 35,
+    "images": [
+      {
+        "public_id": "cap1",
+        "url": "/images/unisex-cap.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Girls Leggings",
+    "description": "Stretchable leggings in multiple colors",
+    "price": 299,
+    "category": "Kids",
+    "stock": 28,
+    "images": [
+      {
+        "public_id": "leggings1",
+        "url": "/images/girl's-laggings.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Men's Hoodie",
+    "description": "Warm and stylish hoodie",
+    "price": 999,
+    "category": "Men",
+    "stock": 10,
+    "images": [
+      {
+        "public_id": "hoodie1",
+        "url": "/images/men's-hoodie.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Women's Scarf",
+    "description": "Printed scarf for all seasons",
+    "price": 199,
+    "category": "Accessories",
+    "stock": 50,
+    "images": [
+      {
+        "public_id": "scarf1",
+        "url": "/images/women's-scart.jpg"
+      }
+    ]
+  },
+  {
+    "name": "Kids Backpack",
+    "description": "Colorful school backpack for kids",
+    "price": 799,
+    "category": "Kids",
+    "stock": 14,
+    "images": [
+      {
+        "public_id": "backpack1",
+        "url": "/images/kids-backpack.jpg"
+      }
+    ]
+  }
+]

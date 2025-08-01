@@ -1,0 +1,16 @@
+.home {
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.homeHeading {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.5rem;
+}

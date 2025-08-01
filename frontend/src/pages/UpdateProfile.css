@@ -1,0 +1,37 @@
+.updateProfileContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.updateProfileForm {
+  width: 350px;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.updateProfileForm h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.updateProfileForm input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.updateProfileForm button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

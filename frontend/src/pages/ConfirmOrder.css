@@ -1,0 +1,56 @@
+.confirmOrderPage {
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.orderSummary {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.orderSummary h2 {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+.orderItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.orderItem img {
+  width: 60px;
+  border-radius: 5px;
+}
+
+.priceSummary {
+  margin-top: 2rem;
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+}
+
+.priceSummary p,
+.priceSummary h3 {
+  text-align: right;
+  margin: 0.5rem 0;
+}
+
+.orderSummary button {
+  width: 100%;
+  padding: 0.8rem;
+  background: #4caf50;
+  color: white;
+  border: none;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+}

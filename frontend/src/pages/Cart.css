@@ -1,0 +1,99 @@
+.cartPage {
+  padding: 2rem;
+}
+
+.cartPage h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.cartEmpty {
+  text-align: center;
+}
+
+.shopBtn {
+  display: inline-block;
+  margin-top: 1rem;
+  background: #3f51b5;
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.cartItems {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+.cartItem img {
+  width: 80px;
+  margin-right: 1rem;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.details {
+  flex: 1;
+}
+
+.details a {
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+.details p {
+  margin: 0.5rem 0;
+}
+
+.qtyControl {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.qtyControl input {
+  width: 50px;
+  text-align: center;
+}
+
+.qtyControl button {
+  padding: 0.3rem 0.6rem;
+  font-size: 1.2rem;
+}
+
+.removeBtn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cartTotal {
+  margin-top: 2rem;
+  text-align: right;
+}
+
+.checkoutBtn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}

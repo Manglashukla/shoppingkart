@@ -1,0 +1,33 @@
+.ordersContainer {
+  padding: 2rem;
+}
+
+.ordersContainer h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.ordersTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+.ordersTable th,
+.ordersTable td {
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  text-align: center;
+}
+
+.ordersTable th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.ordersTable a {
+  text-decoration: none;
+  color: #2196f3;
+  font-weight: bold;
+}

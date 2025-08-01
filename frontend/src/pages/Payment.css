@@ -1,0 +1,33 @@
+.paymentContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.paymentBox {
+  width: 350px;
+  padding: 2rem;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.paymentBox h2 {
+  margin-bottom: 1rem;
+}
+
+.paymentBox p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.paymentBox button {
+  padding: 0.8rem 2rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}

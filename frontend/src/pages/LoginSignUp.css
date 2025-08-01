@@ -1,0 +1,49 @@
+.loginSignUpContainer {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.switchTabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.5rem;
+}
+
+.switchTabs button {
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  background: #eee;
+  border: none;
+  cursor: pointer;
+}
+
+.switchTabs .active {
+  background: #4caf50;
+  color: white;
+}
+
+.formBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.formBox input {
+  margin-bottom: 1rem;
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.formBox button {
+  padding: 0.7rem;
+  background: #4caf50;
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}

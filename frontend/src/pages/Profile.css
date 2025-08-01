@@ -1,0 +1,20 @@
+.profileButtons {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.profileButtons button {
+  padding: 0.6rem 1rem;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.profileButtons button:hover {
+  background-color: #125aa1;
+}
