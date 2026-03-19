@@ -2,25 +2,58 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1e88e5;
-  padding: 1rem 2rem;
-  color: white;
+  padding: 1rem 5vmax;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .header__logo a {
-  color: white;
-  text-decoration: none;
   font-size: 1.5rem;
   font-weight: bold;
+  color: tomato;
+  text-decoration: none;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
 .header__nav a {
-  margin-left: 1.5rem;
   text-decoration: none;
-  color: white;
-  font-weight: 500;
+  color: rgba(0, 0, 0, 0.7);
+  font: 500 1rem "Roboto";
+  transition: all 0.5s;
 }
 
 .header__nav a:hover {
-  text-decoration: underline;
+  color: tomato;
+}
+
+.logoutBtn {
+  border: none;
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.7);
+  font: 500 1rem "Roboto";
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.logoutBtn:hover {
+  color: tomato;
+}
+
+.loginLink {
+  background-color: tomato;
+  color: white !important;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+}
+
+.loginLink:hover {
+  background-color: rgb(214, 84, 61);
 }

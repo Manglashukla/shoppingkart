@@ -1,0 +1,60 @@
+.adminProducts {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: rgb(231, 231, 231);
+  display: flex;
+  flex-direction: column;
+  padding: 2vmax;
+}
+
+.adminProductsContainer {
+  background-color: white;
+  border-left: 1px solid rgba(0, 0, 0, 0.158);
+  height: 100vh;
+}
+
+#productListHeading {
+  font: 400 2rem "Roboto";
+  padding: 0.5vmax;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.637);
+  transition: all 0.5s;
+  margin: 2rem;
+  text-align: center;
+}
+
+.productListTable {
+  width: 90%;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.productListTable th {
+  background-color: tomato;
+  padding: 1vmax;
+  color: white;
+  font: 400 1vmax "Roboto";
+  text-align: left;
+}
+
+.productListTable td {
+  padding: 1vmax;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  font: 300 1vmax "Roboto";
+}
+
+.productListTable td a,
+.productListTable td button {
+  color: rgba(0, 0, 0, 0.678);
+  transition: all 0.5s;
+  text-decoration: none;
+  margin: 0 1vmax;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.productListTable td a:hover,
+.productListTable td button:hover {
+  color: tomato;
+}

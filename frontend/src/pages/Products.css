@@ -1,36 +1,69 @@
 .productsPage {
+  padding: 2vmax 5vmax;
   display: flex;
-  gap: 1rem;
-  padding: 1.5rem;
-  background-color: #f8f8f8;
+  flex-direction: column;
 }
 
-.filterSidebar {
-  width: 250px;
-  background: white;
-  padding: 1rem;
-  border-radius: 10px;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
+.productsHeading {
+  margin: 2vmax auto;
+  width: 20vmax;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.171);
+  padding: 2vmax;
+  color: rgba(0, 0, 0, 0.678);
+  font: 500 1.5vmax "Roboto";
+  text-align: center;
 }
 
-.filterGroup {
-  margin-bottom: 1.5rem;
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 30vh;
 }
 
-.filterGroup label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
+.filterBox {
+  width: 10vmax;
+  position: absolute;
+  top: 10vmax;
+  left: 4vmax;
 }
 
-.filterGroup input[type="text"],
-.filterGroup input[type="range"] {
-  width: 100%;
+.filterBox > p {
+  font: 400 0.8vmax "Roboto";
+  color: rgba(0, 0, 0, 0.705);
+  margin-top: 1vmax;
 }
 
-.productGrid {
-  flex: 1;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1.2rem;
+.categoryBox {
+  padding: 0;
+}
+
+.category-link {
+  list-style: none;
+  color: rgba(0, 0, 0, 0.61);
+  font: 400 0.7vmax "Roboto";
+  margin: 0.4vmax;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.category-link:hover {
+  color: tomato;
+}
+
+.filterBox fieldset {
+  border: 1px solid rgba(0, 0, 0, 0.329);
+  padding: 1vmax;
+  margin-top: 2vmax;
+}
+
+.filterBox legend {
+  font: 400 0.8vmax "Roboto";
+  color: rgba(0, 0, 0, 0.705);
+}
+
+.loading {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 10vmax;
 }

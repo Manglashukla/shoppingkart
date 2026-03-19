@@ -1,7 +1,7 @@
 // frontend/src/pages/Profile.js
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "../axios";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -10,9 +10,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const { data } = await axios.get("/api/v1/users/me", {
-          withCredentials: true,
-        });
+        const { data } = await axios.get("/users/me");
         setUser(data.user);
       } catch (error) {
         alert(error.response?.data?.message || "Failed to fetch profile");
@@ -25,9 +23,7 @@ const Profile = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.get("/api/v1/users/logout", {
-        withCredentials: true,
-      });
+      await axios.get("/users/logout");
       alert("Logged out successfully");
       navigate("/login");
     } catch (error) {

@@ -1,120 +1,81 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login, register, clearErrors } from "../actions/userActions";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./LoginSignUp.css";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const LoginSignUp = () => {
-  const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(true);
+  const disp = useDispatch();
+  const nav = useNavigate();
+  const loc = useLocation();
+  const { error: err, isAuthenticated: auth, user } = useSelector((s) => s.user);
+  const [isL, setL] = useState(true);
+  const [em, setEm] = useState("");
+  const [pw, setPw] = useState("");
+  const [u, setU] = useState({ name: "", email: "", password: "", role: "user" });
+  const { name: n, email: e, password: p, role: r } = u;
 
-  // Login states
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const onL = (ev) => {
+    ev.preventDefault();
+    disp(login(em, pw));
+  };
 
-  // Register states
-  const [name, setName] = useState("");
-  const [registerEmail, setRegisterEmail] = useState("");
-  const [registerPassword, setRegisterPassword] = useState("");
+  const onR = (ev) => {
+    ev.preventDefault();
+    disp(register({ name: n, email: e, password: p, role: r }));
+  };
 
-  const loginHandler = async (e) => {
-  e.preventDefault();
-  try {
-    await axios.post(
-      "/api/v1/auth/login",
-      { email, password },
-      { withCredentials: true }
-    );
-    alert("Login successful");
-    navigate("/");
-  } catch (error) {
-    alert(error.response?.data?.message || "Login failed");
-  }
-};
+  const ch = (ev) => setU({ ...u, [ev.target.name]: ev.target.value });
 
-const registerHandler = async (e) => {
-  e.preventDefault();
-  try {
-    await axios.post(
-      "/api/v1/auth/register",
-      { name, email: registerEmail, password: registerPassword },
-      { withCredentials: true }
-    );
-    alert("Registration successful");
-    navigate("/");
-  } catch (error) {
-    alert(error.response?.data?.message || "Registration failed");
-  }
-};
-
+  useEffect(() => {
+    if (err) {
+      alert(err);
+      disp(clearErrors());
+    }
+    if (auth) {
+      const redir = loc.search ? loc.search.split("=")[1] : (user && user.role === "admin" ? "/dashboard" : "/profile");
+      nav(redir);
+    }
+  }, [disp, err, auth, nav, loc.search, user]);
 
   return (
     <div className="loginSignUpContainer">
-      <div className="switchTabs">
-        <button
-          onClick={() => setIsLogin(true)}
-          className={isLogin ? "active" : ""}
-        >
-          Login
-        </button>
-        <button
-          onClick={() => setIsLogin(false)}
-          className={!isLogin ? "active" : ""}
-        >
-          Register
-        </button>
+      <div className="loginSignUpBox">
+        <div className="loginSignUpToggle">
+          <p onClick={() => setL(true)} className={isL ? "activeTab" : ""}>LOGIN</p>
+          <p onClick={() => setL(false)} className={!isL ? "activeTab" : ""}>REGISTER</p>
+        </div>
+        {isL ? (
+          <form className="loginForm" onSubmit={onL}>
+            <div className="loginEmail">
+              <input type="email" placeholder="Email" required value={em} onChange={(v) => setEm(v.target.value)} />
+            </div>
+            <div className="loginPassword">
+              <input type="password" placeholder="Password" required value={pw} onChange={(v) => setPw(v.target.value)} />
+            </div>
+            <input type="submit" value="Login" className="loginBtn" />
+          </form>
+        ) : (
+          <form className="signUpForm" onSubmit={onR}>
+            <div className="signUpName">
+              <input type="text" placeholder="Name" required name="name" value={n} onChange={ch} />
+            </div>
+            <div className="signUpEmail">
+              <input type="email" placeholder="Email" required name="email" value={e} onChange={ch} />
+            </div>
+            <div className="signUpPassword">
+              <input type="password" placeholder="Password" required name="password" value={p} onChange={ch} />
+            </div>
+            <div className="signUpRole">
+              <select name="role" value={r} onChange={ch} className="roleSelect">
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <input type="submit" value="Register" className="signUpBtn" />
+          </form>
+        )}
       </div>
-
-      {isLogin ? (
-        <form className="formBox" onSubmit={loginHandler}>
-          <h2>Login</h2>
-          <input
-            type="email"
-            required
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <input
-            type="password"
-            required
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-
-          <button type="submit">Login</button>
-        </form>
-      ) : (
-        <form className="formBox" onSubmit={registerHandler}>
-          <h2>Register</h2>
-          <input
-            type="text"
-            required
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-
-          <input
-            type="email"
-            required
-            placeholder="Email"
-            value={registerEmail}
-            onChange={(e) => setRegisterEmail(e.target.value)}
-          />
-
-          <input
-            type="password"
-            required
-            placeholder="Password"
-            value={registerPassword}
-            onChange={(e) => setRegisterPassword(e.target.value)}
-          />
-
-          <button type="submit">Register</button>
-        </form>
-      )}
     </div>
   );
 };

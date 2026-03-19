@@ -1,33 +1,77 @@
 .paymentContainer {
   display: flex;
   justify-content: center;
-  margin-top: 3rem;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #f5f5f5;
+  padding: 20px;
 }
 
-.paymentBox {
-  width: 350px;
-  padding: 2rem;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.paymentForm {
+  width: 100%;
+  max-width: 450px;
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.paymentHeading {
   text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+  font-size: 1.5rem;
 }
 
-.paymentBox h2 {
-  margin-bottom: 1rem;
+.paymentInputGroup {
+  margin-bottom: 20px;
 }
 
-.paymentBox p {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+.paymentInputGroup label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 600;
+  font-size: 0.9rem;
 }
 
-.paymentBox button {
-  padding: 0.8rem 2rem;
-  background-color: #4caf50;
+.stripeInput {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fafafa;
+  transition: border-color 0.2s;
+}
+
+.stripeInput:focus-within {
+  border-color: #333;
+}
+
+.paymentBtn {
+  width: 100%;
+  padding: 14px;
+  background-color: #333;
   color: white;
   border: none;
+  border-radius: 4px;
+  font-size: 1rem;
   font-weight: bold;
-  border-radius: 5px;
   cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+}
+
+.paymentBtn:hover {
+  background-color: #000;
+}
+
+.paymentBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .paymentForm {
+    padding: 20px;
+  }
 }

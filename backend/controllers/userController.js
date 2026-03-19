@@ -6,15 +6,16 @@ import catchAsyncErrors from "../middleware/catchAsyncErrors.js";
 
 // Register User
 export const registerUser = catchAsyncErrors(async (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
 
   const user = await User.create({
     name,
     email,
     password,
+    role: role || "user",
     avatar: {
       public_id: "sample_id",
-      url: "https://via.placeholder.com/150", // default avatar
+      url: "https://via.placeholder.com/150",
     },
   });
 
@@ -51,40 +52,123 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({ success: true, message: "Logged out" });
 });
 
-// Get User Profile (used in Profile page)
-export const getUserDetails = catchAsyncErrors(async (req, res, next) => {
+// Get Logged-In User Info (loadUser)
+export const getMe = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user.id);
-
-  if (!user) {
-    return next(new ErrorHandler("User not found", 404));
-  }
 
   res.status(200).json({
     success: true,
-    user: {
-      name: user.name,
-      email: user.email,
-      role: user.isAdmin ? "admin" : "user",
-      avatar: user.avatar.url,
-    },
+    user,
   });
 });
 
-// ✅ Get Logged-In User Info (used in loadUser)
-export const getMe = catchAsyncErrors(async (req, res, next) => {
-  const user = await User.findById(req.user._id);
+// Get All Users (Admin)
+export const getAllUsers = catchAsyncErrors(async (req, res, next) => {
+  const users = await User.find();
+
+  res.status(200).json({
+    success: true,
+    users,
+  });
+});
+
+// Get single user (Admin)
+export const getSingleUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
 
   if (!user) {
-    return next(new ErrorHandler("User not found", 404));
+    return next(
+      new ErrorHandler(`User does not exist with Id: ${req.params.id}`, 400)
+    );
   }
 
   res.status(200).json({
     success: true,
-    user: {
-      _id: user._id,
-      name: user.name,
-      email: user.email,
-      isAdmin: user.isAdmin,
-    },
+    user,
+  });
+});
+
+// Update User Role (Admin)
+export const updateUserRole = catchAsyncErrors(async (req, res, next) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+    role: req.body.role,
+  };
+
+  await User.findByIdAndUpdate(req.params.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+  });
+});
+
+// Delete User (Admin)
+export const deleteUser = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    return next(
+      new ErrorHandler(`User does not exist with Id: ${req.params.id}`, 400)
+    );
+  }
+
+  await user.deleteOne();
+
+  res.status(200).json({
+    success: true,
+    message: "User Deleted Successfully",
+  });
+});
+
+// Update User Profile
+export const updateProfile = catchAsyncErrors(async (req, res, next) => {
+  const newUserData = {
+    name: req.body.name,
+    email: req.body.email,
+  };
+
+  const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+    new: true,
+    runValidators: true,
+    useFindAndModify: false,
+  });
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});
+
+// Update User Password
+export const updatePassword = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.user.id).select("+password");
+
+  const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
+
+  if (!isPasswordMatched) {
+    return next(new ErrorHandler("Old password is incorrect", 401));
+  }
+
+  if (req.body.newPassword !== req.body.confirmPassword) {
+    return next(new ErrorHandler("Passwords do not match", 400));
+  }
+
+  user.password = req.body.newPassword;
+  await user.save();
+
+  sendToken(user, 200, res);
+});
+
+// Get User Profile (compatibility)
+export const getUserDetails = catchAsyncErrors(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+  res.status(200).json({
+    success: true,
+    user,
   });
 });

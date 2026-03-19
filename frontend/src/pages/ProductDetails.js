@@ -1,68 +1,83 @@
-// src/pages/ProductDetails.js
+// frontend/src/pages/ProductDetails.js
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getProductDetails, clearErrors } from "../actions/productActions";
 import { addToCart } from "../actions/cartActions";
-import axios from "../axios";
+import "./ProductDetails.css";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const [product, setProduct] = useState(null);
+  const { loading, error, product } = useSelector((state) => state.productDetails);
+
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const { data } = await axios.get(`/products/${id}`);
-        setProduct(data.product);
-      } catch (error) {
-        console.error("Failed to fetch product:", error);
-      }
-    };
-
-    fetchProduct();
-  }, [id]);
+    if (error) {
+      alert(error);
+      dispatch(clearErrors());
+    }
+    dispatch(getProductDetails(id));
+  }, [dispatch, id, error]);
 
   const addToCartHandler = () => {
-    if (product) {
-      dispatch(addToCart(product._id, quantity));
-      alert("Added to cart!");
-    }
+    dispatch(addToCart(id, quantity));
+    alert("Item Added To Cart");
   };
 
-  if (!product) return <p style={{ padding: "2rem" }}>Product not found</p>;
+  if (loading) return <p className="loading">Loading...</p>;
 
   return (
-    <div style={{ padding: "2rem" }}>
-      <h2>{product.name}</h2>
-      <img
-      src={product.images?.[0]?.url || "/default-product.jpeg"}
-      alt={product.name}
-      width="200"
-      />
+    <div className="productDetails">
+      {product && (
+        <>
+          <div className="productImage">
+            <img
+              src={product.images?.[0]?.url || "https://via.placeholder.com/300"}
+              alt={product.name}
+            />
+          </div>
 
+          <div className="productInfo">
+            <h2>{product.name}</h2>
+            <p className="productId">Product # {product._id}</p>
+            <hr />
+            <div className="detailsBlock-3">
+              <h1>₹{product.price}</h1>
+              <div className="detailsBlock-3-1">
+                <div className="detailsBlock-3-1-1">
+                  <button onClick={() => quantity > 1 && setQuantity(quantity - 1)}>-</button>
+                  <input readOnly type="number" value={quantity} />
+                  <button onClick={() => product.stock > quantity && setQuantity(quantity + 1)}>+</button>
+                </div>
+                <button
+                  disabled={product.stock < 1}
+                  onClick={addToCartHandler}
+                >
+                  Add to Cart
+                </button>
+              </div>
 
+              <p>
+                Status:
+                <b className={product.stock < 1 ? "redColor" : "greenColor"}>
+                  {product.stock < 1 ? "OutOfStock" : "InStock"}
+                </b>
+              </p>
+            </div>
 
-      <p>Price: ₹{product.price}</p>
-      <p>Description: {product.description}</p>
-      <p>Stock: {product.stock}</p>
+            <hr />
 
-      <div>
-        <label>Quantity:</label>
-        <input
-          type="number"
-          min={1}
-          max={product.stock}
-          value={quantity}
-          onChange={(e) => setQuantity(Number(e.target.value))}
-        />
-      </div>
+            <div className="detailsBlock-4">
+              Description: <p>{product.description}</p>
+            </div>
 
-      <button onClick={addToCartHandler} style={{ marginTop: "1rem" }}>
-        Add to Cart
-      </button>
+            <button className="submitReview">Submit Review</button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -21,8 +21,8 @@ const Shipping = () => {
 
     dispatch(saveShippingInfo({ address, city, state, pinCode, phoneNo }));
 
-    // ✅ Navigate to /payment
-    navigate("/payment");
+    // ✅ Navigate to /order/confirm
+    navigate("/order/confirm");
   };
 
   return (

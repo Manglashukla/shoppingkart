@@ -5,10 +5,16 @@ import {
   loginUser,
   logout,
   getUserDetails,
-  getMe, // ✅ Import the new controller
+  getMe,
+  updateProfile,
+  updatePassword,
+  getAllUsers,
+  getSingleUser,
+  updateUserRole,
+  deleteUser,
 } from "../controllers/userController.js";
 
-import { isAuthenticatedUser } from "../middleware/auth.js";
+import { isAuthenticatedUser, authorizeRoles } from "../middleware/auth.js";
 
 const router = express.Router();
 
@@ -17,8 +23,16 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.get("/logout", logout);
 
-// ✅ Protected Routes
-router.get("/me", isAuthenticatedUser, getMe); // <-- Replaced old handler with new getMe
-router.get("/profile", isAuthenticatedUser, getUserDetails); // (optional, used in Profile page)
+// Protected User Routes
+router.get("/me", isAuthenticatedUser, getMe);
+router.get("/profile", isAuthenticatedUser, getUserDetails);
+router.put("/me/update", isAuthenticatedUser, updateProfile);
+router.put("/password/update", isAuthenticatedUser, updatePassword);
+
+// Admin Routes
+router.get("/admin/users", isAuthenticatedUser, authorizeRoles("admin"), getAllUsers);
+router.get("/admin/user/:id", isAuthenticatedUser, authorizeRoles("admin"), getSingleUser);
+router.put("/admin/user/:id", isAuthenticatedUser, authorizeRoles("admin"), updateUserRole);
+router.delete("/admin/user/:id", isAuthenticatedUser, authorizeRoles("admin"), deleteUser);
 
 export default router;

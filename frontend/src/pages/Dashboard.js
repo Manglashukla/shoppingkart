@@ -1,3 +1,4 @@
+// frontend/src/pages/Dashboard.js
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -5,21 +6,19 @@ import AdminDashboard from "../components/AdminDashboard";
 import UserDashboard from "../components/UserDashboard";
 
 const Dashboard = () => {
-  const { user, isAuthenticated, loading } = useSelector((state) => state.userLogin);
+  const { user, isAuthenticated, loading } = useSelector((state) => state.user);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loading && !isAuthenticated) {
-      navigate("/login");
+    if (loading === false) {
+      if (!isAuthenticated) {
+        navigate("/login");
+      }
     }
   }, [isAuthenticated, loading, navigate]);
 
-  if (loading) return <p>Loading user info...</p>;
+  if (loading) return <p style={{ padding: "2rem" }}>Loading...</p>;
 
-  // ✅ Option 1: Based on isAdmin boolean (recommended)
-  // return user && user.isAdmin ? <AdminDashboard /> : <UserDashboard />;
-
-  // ✅ Option 2: Based on user.role === 'admin'
   return user && user.role === "admin" ? <AdminDashboard /> : <UserDashboard />;
 };
 

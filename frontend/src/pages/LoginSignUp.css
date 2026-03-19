@@ -1,49 +1,96 @@
 .loginSignUpContainer {
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
-}
-
-.switchTabs {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(231, 231, 231);
 }
 
-.switchTabs button {
-  padding: 0.5rem 1rem;
-  font-weight: bold;
-  background: #eee;
-  border: none;
+.loginSignUpBox {
+  background-color: white;
+  width: 25vw;
+  height: 70vh;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.loginSignUpToggle {
+  display: flex;
+  height: 3vmax;
+}
+
+.loginSignUpToggle > p {
+  color: rgba(0, 0, 0, 0.678);
+  font: 300 1vmax "Roboto";
+  transition: all 0.5s;
   cursor: pointer;
+  display: grid;
+  place-items: center;
+  width: 100%;
 }
 
-.switchTabs .active {
-  background: #4caf50;
-  color: white;
+.loginSignUpToggle > p:hover {
+  color: tomato;
 }
 
-.formBox {
+.activeTab {
+  border-bottom: 2px solid tomato;
+}
+
+.loginForm,
+.signUpForm {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 2vmax;
+  height: 70%;
+  transition: all 0.5s;
 }
 
-.formBox input {
-  margin-bottom: 1rem;
-  padding: 0.7rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.loginForm > div,
+.signUpForm > div {
+  display: flex;
+  width: 100%;
+  align-items: center;
 }
 
-.formBox button {
-  padding: 0.7rem;
-  background: #4caf50;
-  color: white;
-  border: none;
-  font-weight: bold;
-  border-radius: 5px;
+.loginForm input,
+.signUpForm input,
+.roleSelect {
+  padding: 1vmax 4vmax;
+  padding-right: 1vmax;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.267);
+  border-radius: 4px;
+  font: 300 0.9vmax "Roboto";
+  outline: none;
+}
+
+.roleSelect {
   cursor: pointer;
+  background-color: white;
+}
+
+.loginBtn,
+.signUpBtn {
+  border: none;
+  background-color: tomato;
+  color: white;
+  font: 300 1vmax "Roboto";
+  width: 100%;
+  padding: 0.8vmax;
+  cursor: pointer;
+  transition: all 0.5s;
+  border-radius: 4px;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.219);
+}
+
+.loginBtn:hover,
+.signUpBtn:hover {
+  background-color: rgb(179, 66, 46);
 }

@@ -1,78 +1,98 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import axios from "../axios";
+// frontend/src/pages/Products.js
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAllProducts, clearErrors } from "../actions/productActions";
+import ProductCard from "../components/ProductCard";
 import "./Products.css";
 
+const categories = [
+  "Laptop",
+  "Footwear",
+  "Bottom",
+  "Tops",
+  "Attire",
+  "Camera",
+  "SmartPhones",
+];
+
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [price, setPrice] = useState(2000);
-  const [search, setSearch] = useState("");
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+
+  const [currentPage] = useState(1);
+  const [price, setPrice] = useState([0, 25000]);
+  const [category, setCategory] = useState("");
+  const [ratings, setRatings] = useState(0);
+
+  const {
+    products,
+    loading,
+    error,
+  } = useSelector((state) => state.products);
+
+  const keyword = ""; // Can be connected to a search bar in Header if needed
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const { data } = await axios.get("/products");
-        setProducts(data.products);
-      } catch (error) {
-        console.error("❌ Failed to fetch products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
-  }, []);
-
-  const filtered = products.filter(
-    (product) =>
-      product.price <= price &&
-      product.name.toLowerCase().includes(search.toLowerCase())
-  );
+    if (error) {
+      alert(error);
+      dispatch(clearErrors());
+    }
+    dispatch(getAllProducts(keyword, currentPage, price, category, ratings));
+  }, [dispatch, keyword, currentPage, price, category, ratings, error]);
 
   return (
-    <div className="productsPage">
-      <div className="filterSidebar">
-        <h3>Filters</h3>
-        <input
-          type="text"
-          placeholder="Search..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <label>Max Price: ₹{price}</label>
-        <input
-          type="range"
-          min="0"
-          max="5000"
-          value={price}
-          onChange={(e) => setPrice(Number(e.target.value))}
-        />
-      </div>
+    <>
+      {loading ? (
+        <p className="loading">Loading...</p>
+      ) : (
+        <div className="productsPage">
+          <h2 className="productsHeading">Products</h2>
 
-      <div className="productGrid">
-        {loading ? (
-          <p>Loading products...</p>
-        ) : filtered.length > 0 ? (
-          filtered.map((product) => (
-            <div key={product._id} className="productCard">
-              <img
-                src={product.images?.[0]?.url || "/default-product.jpeg"}
-                alt={product.name}
-                width="150"
+          <div className="products">
+            {products &&
+              products.map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
+          </div>
+
+          <div className="filterBox">
+            <p>Price</p>
+            <input
+              type="range"
+              min={0}
+              max={25000}
+              value={price[1]}
+              onChange={(e) => setPrice([0, Number(e.target.value)])}
+            />
+            <span>Max: ₹{price[1]}</span>
+
+            <p>Categories</p>
+            <ul className="categoryBox">
+              {categories.map((cat) => (
+                <li
+                  className="category-link"
+                  key={cat}
+                  onClick={() => setCategory(cat)}
+                >
+                  {cat}
+                </li>
+              ))}
+            </ul>
+
+            <fieldset>
+              <legend>Ratings Above</legend>
+              <input
+                type="range"
+                min={0}
+                max={5}
+                value={ratings}
+                onChange={(e) => setRatings(Number(e.target.value))}
               />
-              <h3>{product.name}</h3>
-              <p>₹{product.price}</p>
-              <Link to={`/product/${product._id}`}>
-                <button>View Details</button>
-              </Link>
-            </div>
-          ))
-        ) : (
-          <p>No products found.</p>
-        )}
-      </div>
-    </div>
+              <span>{ratings} Stars</span>
+            </fieldset>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

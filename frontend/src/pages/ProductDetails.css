@@ -1,62 +1,134 @@
 .productDetails {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  padding: 2rem;
-  background: #fdfdfd;
-}
-
-.imageSection {
-  flex: 1 1 300px;
-  text-align: center;
-}
-
-.imageSection img {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 10px;
-}
-
-.infoSection {
-  flex: 1 1 400px;
-}
-
-.infoSection h2 {
-  margin-bottom: 0.5rem;
-}
-
-.infoSection p {
-  color: #666;
-}
-
-.infoSection h3 {
-  margin: 1rem 0;
-  color: green;
-}
-
-.quantityControl {
-  display: flex;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 0.5rem;
+  padding: 6vmax;
+  box-sizing: border-box;
+}
+
+.productImage {
+  width: 400px;
+  max-width: 100%;
+}
+
+.productImage img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.productInfo {
+  width: 500px;
+  max-width: 100%;
+}
+
+.productInfo h2 {
+  color: rgb(54, 54, 54);
+  font-size: 2rem;
   margin-bottom: 1rem;
 }
 
-.quantityControl input {
-  width: 50px;
-  text-align: center;
+.productId {
+  color: rgba(54, 54, 54, 0.582);
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
 }
 
-.quantityControl button {
-  padding: 0.3rem 0.6rem;
-  font-size: 1.2rem;
+.detailsBlock-3 h1 {
+  color: rgba(17, 17, 17, 0.795);
+  margin: 1vmax 0;
 }
 
-.addToCartBtn {
-  padding: 0.6rem 1rem;
-  background-color: tomato;
+.detailsBlock-3-1 {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 1vmax 0;
+}
+
+.detailsBlock-3-1-1 {
+  display: flex;
+  align-items: center;
+}
+
+.detailsBlock-3-1-1 button {
+  background-color: rgba(0, 0, 0, 0.616);
+  color: white;
   border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.detailsBlock-3-1-1 button:hover {
+  background-color: rgba(0, 0, 0, 0.767);
+}
+
+.detailsBlock-3-1-1 input {
+  border: none;
+  padding: 0.5rem;
+  width: 2vmax;
+  text-align: center;
+  outline: none;
+  font-size: 1rem;
+  color: rgba(0, 0, 0, 0.74);
+}
+
+.detailsBlock-3-1 > button {
+  border: none;
+  background-color: tomato;
+  font: 500 0.8rem "Roboto";
+  border-radius: 20px;
+  padding: 0.5rem 2rem;
   color: white;
   cursor: pointer;
-  font-weight: bold;
-  border-radius: 5px;
+  transition: all 0.5s;
+  outline: none;
+}
+
+.detailsBlock-3-1 > button:hover {
+  background-color: rgb(214, 84, 61);
+}
+
+.detailsBlock-4 {
+  color: rgba(0, 0, 0, 0.897);
+  font: 500 1.2vmax sans-serif;
+  margin: 1vmax 0;
+}
+
+.detailsBlock-4 p {
+  color: rgba(0, 0, 0, 0.616);
+  font: 300 1vmax "Roboto";
+}
+
+.submitReview {
+  border: none;
+  background-color: tomato;
+  font: 500 0.8rem "Roboto";
+  border-radius: 20px;
+  padding: 0.6rem 2rem;
+  color: white;
+  margin: 1vmax 0;
+  cursor: pointer;
+  transition: all 0.5s;
+  outline: none;
+}
+
+.submitReview:hover {
+  background-color: rgb(197, 68, 45);
+  transform: scale(1.1);
+}
+
+.redColor {
+  color: red;
+}
+
+.greenColor {
+  color: green;
+}
+
+.loading {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 10vmax;
 }

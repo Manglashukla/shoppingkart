@@ -1,12 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./UpdatePassword.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { updatePassword, clearErrors } from "../actions/userActions";
 
 const UpdatePassword = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { error, isUpdated, loading } = useSelector((state) => state.user);
+
   const [oldPassword, setOldPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  useEffect(() => {
+    if (error) {
+      alert(error);
+      dispatch(clearErrors());
+    }
+
+    if (isUpdated) {
+      alert("Password updated successfully!");
+      navigate("/profile");
+      dispatch({ type: "UPDATE_PASSWORD_RESET" });
+    }
+  }, [dispatch, error, isUpdated, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,9 +35,7 @@ const UpdatePassword = () => {
       return;
     }
 
-    console.log("Password Updated:", { oldPassword, newPassword });
-    alert("Password updated successfully!");
-    navigate("/profile");
+    dispatch(updatePassword({ oldPassword, newPassword, confirmPassword }));
   };
 
   return (
@@ -50,7 +67,9 @@ const UpdatePassword = () => {
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
 
-        <button type="submit">Update</button>
+        <button type="submit" disabled={loading}>
+          {loading ? "Updating..." : "Update"}
+        </button>
       </form>
     </div>
   );

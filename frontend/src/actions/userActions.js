@@ -1,98 +1,108 @@
+// frontend/src/actions/userActions.js
 import axios from "../axios";
 
-// Load user (auto-login)
-// frontend/src/actions/userActions.js
-
-export const loadUser = () => async (dispatch) => {
-  try {
-    dispatch({ type: "USER_LOAD_REQUEST" });
-
-    const { data } = await axios.get("/api/v1/users/me");
-
-    dispatch({
-      type: "USER_LOAD_SUCCESS",
-      payload: data.user, // ✅ must include isAdmin
-    });
-  } catch (error) {
-    dispatch({
-      type: "USER_LOAD_FAIL",
-      payload: error.response?.data?.message || error.message,
-    });
-  }
-};
-
-
-// Login user
+// Login
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: "LOGIN_REQUEST" });
-
     const config = { headers: { "Content-Type": "application/json" } };
-
-    const { data } = await axios.post(
-      "/users/login",
-      { email, password },
-      config
-    );
-
+    const { data } = await axios.post(`/users/login`, { email, password }, config);
     dispatch({ type: "LOGIN_SUCCESS", payload: data.user });
   } catch (error) {
-    dispatch({
-      type: "LOGIN_FAIL",
-      payload: error.response?.data?.message,
+    dispatch({ 
+      type: "LOGIN_FAIL", 
+      payload: error.response ? error.response.data.message : error.message 
     });
   }
 };
 
-// Register user
+// Register
 export const register = (userData) => async (dispatch) => {
   try {
     dispatch({ type: "REGISTER_REQUEST" });
-
     const config = { headers: { "Content-Type": "application/json" } };
-
-    const { data } = await axios.post("/users/register", userData, config);
-
+    const { data } = await axios.post(`/users/register`, userData, config);
     dispatch({ type: "REGISTER_SUCCESS", payload: data.user });
   } catch (error) {
     dispatch({
       type: "REGISTER_FAIL",
-      payload: error.response?.data?.message,
+      payload: error.response ? error.response.data.message : error.message,
     });
   }
 };
 
-// Logout user
+// Load User
+export const loadUser = () => async (dispatch) => {
+  try {
+    dispatch({ type: "LOAD_USER_REQUEST" });
+    const { data } = await axios.get(`/users/me`);
+    dispatch({ type: "LOAD_USER_SUCCESS", payload: data.user });
+  } catch (error) {
+    dispatch({ 
+      type: "LOAD_USER_FAIL", 
+      payload: error.response ? error.response.data.message : error.message 
+    });
+  }
+};
+
+// Logout User
 export const logout = () => async (dispatch) => {
   try {
-    await axios.get("/users/logout");
+    await axios.get(`/users/logout`);
     dispatch({ type: "LOGOUT_SUCCESS" });
   } catch (error) {
-    dispatch({
-      type: "LOGOUT_FAIL",
-      payload: error.response?.data?.message,
+    dispatch({ 
+      type: "LOGOUT_FAIL", 
+      payload: error.response ? error.response.data.message : error.message 
     });
   }
 };
 
-// ✅ Get all users (admin only)
-export const getAllUsers = () => async (dispatch, getState) => {
+// Update Profile
+export const updateProfile = (userData) => async (dispatch) => {
   try {
-    dispatch({ type: "ALL_USERS_REQUEST" });
-
-    const {
-      userLogin: { user },
-    } = getState();
-
-    const config = { headers: { Authorization: `Bearer ${user.token}` } };
-
-    const { data } = await axios.get("/users", config);
-
-    dispatch({ type: "ALL_USERS_SUCCESS", payload: data.users });
+    dispatch({ type: "UPDATE_PROFILE_REQUEST" });
+    const config = { headers: { "Content-Type": "application/json" } };
+    const { data } = await axios.put(`/users/me/update`, userData, config);
+    dispatch({ type: "UPDATE_PROFILE_SUCCESS", payload: data.success });
   } catch (error) {
     dispatch({
-      type: "ALL_USERS_FAIL",
-      payload: error.response?.data?.message || error.message,
+      type: "UPDATE_PROFILE_FAIL",
+      payload: error.response ? error.response.data.message : error.message,
     });
   }
+};
+
+// Update Password
+export const updatePassword = (passwords) => async (dispatch) => {
+  try {
+    dispatch({ type: "UPDATE_PASSWORD_REQUEST" });
+    const config = { headers: { "Content-Type": "application/json" } };
+    const { data } = await axios.put(`/users/password/update`, passwords, config);
+    dispatch({ type: "UPDATE_PASSWORD_SUCCESS", payload: data.success });
+  } catch (error) {
+    dispatch({
+      type: "UPDATE_PASSWORD_FAIL",
+      payload: error.response ? error.response.data.message : error.message,
+    });
+  }
+};
+
+// Get All Users (admin)
+export const getAllUsers = () => async (dispatch) => {
+  try {
+    dispatch({ type: "ALL_USERS_REQUEST" });
+    const { data } = await axios.get(`/users/admin/users`);
+    dispatch({ type: "ALL_USERS_SUCCESS", payload: data.users });
+  } catch (error) {
+    dispatch({ 
+      type: "ALL_USERS_FAIL", 
+      payload: error.response ? error.response.data.message : error.message 
+    });
+  }
+};
+
+// Clearing Errors
+export const clearErrors = () => async (dispatch) => {
+  dispatch({ type: "CLEAR_ERRORS" });
 };
